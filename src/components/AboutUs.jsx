@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import BranchList from "./BranchList";
+import FallbackImage from "../components/FallbackImage";
 
 const AboutUs = () => {
   // Create a reference for the left content box.
@@ -72,7 +73,7 @@ const AboutUs = () => {
           className="overflow-hidden rounded-3xl shadow-lg max-h-[280px] sm:max-h-[320px] md:max-h-[400px] lg:max-h-full"
           style={{ height: leftHeight }}
         >
-          <img
+          <FallbackImage
             src="/infrastructure/bldg2.jpg" // Replace with the actual image path if needed.
             alt="VV Caring Center Building"
             className="h-full w-full object-cover cursor-pointer hover:scale-105 transition"

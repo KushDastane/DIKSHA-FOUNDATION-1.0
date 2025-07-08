@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import FallbackImage from "../components/FallbackImage";
 
 const mealTabs = ["Breakfast", "Lunch", "Evening Snacks/Tea", "Dinner"];
 
@@ -40,7 +41,7 @@ const MealSection = () => {
         <h2 className="text-3xl sm:text-5xl font-semibold font-poppins text-gray-800 tracking-wide">
           Meals
         </h2>
-        <img src="/other/veg.png" className="w-7 h-7 mt-1" alt="Veg" />
+        <FallbackImage src="/other/veg.png" className="w-7 h-7 mt-1" alt="Veg" />
       </div>
 
       {/* Tabs */}
@@ -93,7 +94,7 @@ const MealSection = () => {
 
         {/* Right Image */}
         <div>
-          <img
+          <FallbackImage
             src={data.image}
             alt={data.title}
             className="w-full h-64 sm:h-80 md:h-100 rounded-xl object-cover shadow-md"

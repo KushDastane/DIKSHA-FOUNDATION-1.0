@@ -111,7 +111,7 @@ const ContactSection = () => {
                 Email
               </h4>
               <a
-                href="https://wa.me/919029006592"
+                href="mailto:dikshafoundation77@gmail.com"
                 target="_blank"
                 rel="noreferrer"
                 className="text-green-900 hover:underline"

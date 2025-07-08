@@ -24,6 +24,7 @@
     "react-scroll": "^1.9.3",
     "react-select": "^5.10.1",
     "react-toastify": "^11.0.5",
+    "sharp": "^0.34.2",
     "swiper": "^11.2.10",
     "toolkit-react-cli": "^1.0.0"
   },

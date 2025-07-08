@@ -1,6 +1,7 @@
 import React from "react";
 import TieupsCarousel from "./TieupsCarousel";
 
+
 const csrData = [
   { image: "/CSR/amazon.png", title: "Amazon" },
   { image: "/CSR/iqvia.png", title: "IQVIA" },

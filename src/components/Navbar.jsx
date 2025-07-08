@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { scroller } from "react-scroll";
+import FallbackImage from "../components/FallbackImage";
 
 const navLinks = [
   { name: "Home", href: "#hero" },
@@ -10,10 +12,12 @@ const navLinks = [
   { name: "Contact", href: "#contact" },
 ];
 
-
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -40,17 +44,23 @@ const Navbar = () => {
   const handleNavClick = (e, id) => {
     e.preventDefault();
     setIsOpen(false);
-    const target = document.querySelector(id);
-    if (target) {
-      // Scroll with offset to avoid navbar overlap and unwanted scroll
-      const yOffset = -72; // height of navbar
-      const y =
-        target.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: "smooth" });
+
+    // Turn id like "#about" → "about"
+    const hash = id.replace("#", "");
+
+    if (location.pathname !== "/") {
+      navigate("/#" + hash); // ✅ Use hash for react-scroll to pick up
+    } else {
+      scroller.scrollTo(hash, {
+        duration: 800,
+        delay: 100,
+        smooth: true,
+        offset: -80,
+      });
     }
   };
-  const navigate = useNavigate();
-  const location = useLocation();
+  
+  
 
   const handleLogoClick = () => {
     if (location.pathname !== "/") {
@@ -71,7 +81,7 @@ const Navbar = () => {
         className="flex items-center space-x-2"
         to="/"
       >
-        <img
+        <FallbackImage
           src="/branding/logo.jpg"
           alt="VV Caring Center Logo"
           className="w-10 h-10 rounded-full"

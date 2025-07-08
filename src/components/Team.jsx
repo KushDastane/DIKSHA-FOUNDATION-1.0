@@ -4,6 +4,7 @@ import { Navigation } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import "swiper/css";
 import "swiper/css/navigation";
+import FallbackImage from "../components/FallbackImage";
 
 const team = [
   {
@@ -115,7 +116,7 @@ const Team = () => {
         {team.map((member, index) => (
           <SwiperSlide key={index} className="!flex justify-center">
             <div className="flex flex-col items-center text-center">
-              <img
+              <FallbackImage
                 src={member.image}
                 alt={member.name}
                 className="w-48 h-48 rounded-full object-cover mb-4"

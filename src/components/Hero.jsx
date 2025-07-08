@@ -2,27 +2,28 @@ import React from 'react';
 import { Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ContactFormModal from './Modals/ContactFormModal';
+import FallbackImage from "../components/FallbackImage";
 
 const Hero = ({onContactClick}) => {
     return (
         <section className="w-full flex justify-center items-start pt-15 px-4">
             <div className="relative max-w-7xl w-full rounded-xl mt-8 overflow-hidden shadow-lg">
                 {/* Desktop image */}
-                <img
+                <FallbackImage
                     src="/hero/hero-banner2.jpg"
                     alt="Hero"
                     className="hidden lg:block w-full h-[90vh] object-cover"
                 />
 
                 {/*Tablet image */}
-                <img
+                <FallbackImage
                     src="/hero/hero-banner.png"
                     alt="Hero Mobile"
                     className="hidden sm:block lg:hidden w-full h-[90vh] object-cover"
                 />
 
                 {/* Mobile image */}
-                <img
+                <FallbackImage
                     src="/hero/hero-banner.png"
                     alt="Hero Mobile"
                     className="block sm:hidden w-full h-[90vh] object-cover"

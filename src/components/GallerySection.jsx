@@ -7,10 +7,11 @@ import "lightgallery/css/lg-zoom.css";
 import "lightgallery/css/lg-thumbnail.css";
 import lgZoom from "lightgallery/plugins/zoom";
 import lgThumbnail from "lightgallery/plugins/thumbnail";
+import FallbackImage from "../components/FallbackImage";
 
 // Dynamically import images from src/assets/gallery
 const imageModules = import.meta.glob(
-  "/src/assets/gallery/*.{jpg,jpeg,png,webp}",
+  "/src/assets/gallery/*.webp",
   { eager: true, import: "default" }
 );
 const imageUrls = Object.values(imageModules);
@@ -57,7 +58,7 @@ const GallerySection = () => {
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
         {imageUrls.slice(0, 3).map((src, index) => (
-          <img
+          <FallbackImage
             key={index}
             src={src}
             alt={`Gallery ${index + 1}`}
@@ -69,7 +70,7 @@ const GallerySection = () => {
           className="relative w-full h-40 rounded-md overflow-hidden cursor-pointer group"
           onClick={openGallery}
         >
-          <img
+          <FallbackImage
             src={imageUrls[3] || imageUrls[0]}
             alt="More images"
             className="absolute inset-0 w-full h-full object-cover blur-sm scale-105"

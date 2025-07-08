@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import "swiper/css";
 import "swiper/css/navigation";
+import FallbackImage from "../components/FallbackImage";
 
 const ReusableCarousel = ({ items }) => {
   const swiperRef = useRef(null);
@@ -60,7 +61,7 @@ const ReusableCarousel = ({ items }) => {
         {items.map((item, index) => (
           <SwiperSlide key={index}>
             <div className="rounded-xl overflow-hidden ">
-              <img
+              <FallbackImage
                 src={item.image}
                 alt={item.title}
                 className="w-full h-48 object-cover"

@@ -127,7 +127,7 @@ const Services = () => {
                   key={index}
                   className="bg-[#f8f7f73c] hover:bg-[#E4FFCE] rounded-xl px-5 py-10"
                 >
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-2 min-h-[180px]">
                     <IconComponent className=" text-gray-500 mb-2" />
                     <div className={`${service.titleStyle}`}>
                       {service.title}

@@ -2,7 +2,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import FallbackImage from "../components/FallbackImage";
+import SmartLazyImage from "./SmartLazyImage";
 
 const Carousel = ({
   items,
@@ -23,8 +23,8 @@ const Carousel = ({
       {items.map((item, index) => (
         <SwiperSlide key={index} className="!flex justify-center">
           <div className="flex flex-col items-center text-center text-gray-800">
-            <FallbackImage
-              src={item.image}
+            <SmartLazyImage 
+              base={item.image}
               alt={item.title}
               className="w-36 h-36 object-contain rounded-full mb-4"
             />

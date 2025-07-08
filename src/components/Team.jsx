@@ -4,43 +4,43 @@ import { Navigation } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import "swiper/css";
 import "swiper/css/navigation";
-import FallbackImage from "../components/FallbackImage";
+import SmartLazyImage from "./SmartLazyImage";
 
 const team = [
   {
     name: "Mrs. Vijaya Salve",
     position: "Director",
-    image: "/avatar/mam.jpg",
+    image: "/avatar/mam",
   },
   {
     name: "Mr. Yash Raut",
     position: "PR Head",
-    image: "/avatar/PR.jpg",
+    image: "/avatar/PR",
   },
   {
     name: "Mr. Deepak Gupta",
     position: "Manager",
-    image: "/avatar/manager.jpg",
+    image: "/avatar/manager",
   },
   {
     name: "Ms.Neela Qureshi",
     position: "Female Caregiver",
-    image: "/avatar/care1.jpg",
+    image: "/avatar/care1",
   },
   {
     name: "Ms. Laxmi Waghmare",
     position: "Chef",
-    image: "/avatar/cook.jpg",
+    image: "/avatar/cook",
   },
   {
     name: "Ms. Ashwini Sakole",
     position: "Female Caregiver",
-    image: "/avatar/care2.jpg",
+    image: "/avatar/care2",
   },
   {
     name: "Mr. Sudhir Chavhan",
     position: "Male Caregiver",
-    image: "/avatar/care3.jpg",
+    image: "/avatar/care3",
   },
 ];
 
@@ -116,8 +116,9 @@ const Team = () => {
         {team.map((member, index) => (
           <SwiperSlide key={index} className="!flex justify-center">
             <div className="flex flex-col items-center text-center">
-              <FallbackImage
-                src={member.image}
+              <SmartLazyImage
+              key={member.image}
+                base={member.image}
                 alt={member.name}
                 className="w-48 h-48 rounded-full object-cover mb-4"
               />

@@ -3,35 +3,35 @@ import ReusableCarousel from "../components/ReusableCarousel";
 
 const comfortData = [
   {
-    image: "/comfort/entrance.jpg",
+    image: "/comfort/entrance",
     title: "Wheelchair Entry",
   },
   {
-    image: "/comfort/relax.jpg",
+    image: "/comfort/relax",
     title: "Relaxation Areas",
   },
   {
-    image: "/comfort/solar.jpg",
+    image: "/comfort/solar",
     title: "Solar Backup",
   },
   {
-    image: "/comfort/staff.jpg",
+    image: "/comfort/staff",
     title: "Trained Staff",
   },
   {
-    image: "/comfort/room.jpg",
+    image: "/comfort/room",
     title: "Spacious Rooms",
   },
   {
-    image: "/comfort/medical.jpg",
+    image: "/comfort/medical",
     title: "Electric Beds & Cubicles",
   },
   {
-    image: "/comfort/view.png",
+    image: "/comfort/view",
     title: "Nature View",
   },
   {
-    image: "/comfort/hangout.jpg",
+    image: "/comfort/hangout",
     title: "Hangout premises",
   },
 ];

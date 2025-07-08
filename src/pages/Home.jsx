@@ -1,6 +1,7 @@
 import React from "react";
-
-import { useState } from "react";
+import { scroller } from "react-scroll";
+import { useLocation } from "react-router-dom";
+import { useState,  useEffect } from "react";
 import Hero from "../components/Hero";
 import ContactFormModal from "../components/Modals/ContactFormModal";
 import AboutUs from "../components/AboutUs";
@@ -21,7 +22,22 @@ import EventModal from "../components/Modals/EventModal";
 const Home = () => {
   const [showContact, setShowContact] = useState(false);
   const [showEventBooking, setShowEventBooking] = useState(false); // new
+  const location = useLocation();
 
+  useEffect(() => {
+    const hash = location.hash?.replace("#", "");
+    if (hash) {
+      // Scroll after slight delay to ensure DOM is ready
+      setTimeout(() => {
+        scroller.scrollTo(hash, {
+          duration: 800,
+          delay: 0,
+          smooth: true,
+          offset: -80, // adjust based on your sticky navbar height
+        });
+      }, 200);
+    }
+  }, [location]);
   return (
     <>
       <section id="hero" name="hero">

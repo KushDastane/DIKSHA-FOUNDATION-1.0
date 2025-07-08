@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { scroller } from "react-scroll";
-import FallbackImage from "../components/FallbackImage";
+import SmartLazyImage from "./SmartLazyImage";
 
 const navLinks = [
   { name: "Home", href: "#hero" },
@@ -51,6 +51,7 @@ const Navbar = () => {
     if (location.pathname !== "/") {
       navigate("/#" + hash); // ✅ Use hash for react-scroll to pick up
     } else {
+      window.history.pushState(null, "", `#${hash}`);
       scroller.scrollTo(hash, {
         duration: 800,
         delay: 100,
@@ -59,8 +60,6 @@ const Navbar = () => {
       });
     }
   };
-  
-  
 
   const handleLogoClick = () => {
     if (location.pathname !== "/") {
@@ -81,11 +80,13 @@ const Navbar = () => {
         className="flex items-center space-x-2"
         to="/"
       >
-        <FallbackImage
-          src="/branding/logo.jpg"
+        <SmartLazyImage
+          base="/branding/logo"
           alt="VV Caring Center Logo"
-          className="w-10 h-10 rounded-full"
+          loading="eager"
+          className="w-10 h-10 rounded-full opacity-100 transition-none"
         />
+
         <h1 className="font-poppins text-[clamp(1rem,2vw,1.5rem)] font-bold text-gray-800">
           Diksha Foundation
         </h1>

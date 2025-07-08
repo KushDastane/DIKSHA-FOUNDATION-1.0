@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FallbackImage from "../components/FallbackImage";
+import SmartLazyImage from "./SmartLazyImage";
 
 const mealTabs = ["Breakfast", "Lunch", "Evening Snacks/Tea", "Dinner"];
 
@@ -8,25 +8,25 @@ const mealsData = {
     title: "Bed Tea & Breakfast",
     desc: "Start your day with a tea & a variety of tasty + healthy options.",
     items: ["Tea", "Poha", "Upma", "Sheera", "Sabudana Khichdi", "Misal-Paav"],
-    image: "/food/breakfast.jpg",
+    image: "/food/breakfast",
   },
   Lunch: {
     title: "Nutritious Lunch",
     desc: "A wholesome balanced diet with freshly prepared home-style meals.",
     items: ["Chapati", "Bhaji", "Dal", "Rice", "Salad", "Papad"],
-    image: "/food/lunch.jpg",
+    image: "/food/lunch",
   },
   "Evening Snacks/Tea": {
     title: "Evening Snacks & Tea",
     desc: "Light snacks to refresh you in the evening at 4pm, served with tea or coffee.",
     items: ["Tea", "Coffee", "Biscuits"],
-    image: "/food/tea.jpg",
+    image: "/food/tea",
   },
   Dinner: {
     title: "Comfort Dinner",
     desc: "Light, nutritious food to end your day with warmth and care.",
     items: ["Khichdi", "Pickle", "Chapati", "Bhaji", "Curd"],
-    image: "/food/dinner.jpg",
+    image: "/food/dinner",
   },
 };
 
@@ -41,7 +41,7 @@ const MealSection = () => {
         <h2 className="text-3xl sm:text-5xl font-semibold font-poppins text-gray-800 tracking-wide">
           Meals
         </h2>
-        <FallbackImage src="/other/veg.png" className="w-7 h-7 mt-1" alt="Veg" />
+        <img src="/other/veg.png" className="w-7 h-7 mt-1" alt="Veg" />
       </div>
 
       {/* Tabs */}
@@ -92,12 +92,12 @@ const MealSection = () => {
           </p>
         </div>
 
-        {/* Right Image */}
-        <div>
-          <FallbackImage
-            src={data.image}
+        <div className="w-full h-[20rem] sm:h-[24rem] rounded-xl overflow-hidden shadow-md bg-gray-100">
+          <SmartLazyImage
+            key={data.image}
+            base={data.image}
             alt={data.title}
-            className="w-full h-64 sm:h-80 md:h-100 rounded-xl object-cover shadow-md"
+            className="w-full h-full object-cover"
           />
         </div>
       </div>

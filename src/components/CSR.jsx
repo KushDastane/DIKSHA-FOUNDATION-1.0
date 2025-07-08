@@ -3,11 +3,11 @@ import TieupsCarousel from "./TieupsCarousel";
 
 
 const csrData = [
-  { image: "/CSR/amazon.png", title: "Amazon" },
-  { image: "/CSR/iqvia.png", title: "IQVIA" },
-  { image: "/CSR/kia.png", title: "Kia Motors" },
-  { image: "/CSR/tcs.jpg", title: "TCS" },
-  { image: "/CSR/tp.png", title: "Torrent Power" },
+  { image: "/CSR/amazon", title: "Amazon" },
+  { image: "/CSR/iqvia", title: "IQVIA" },
+  { image: "/CSR/kia", title: "Kia Motors" },
+  { image: "/CSR/tcs", title: "TCS" },
+  { image: "/CSR/tp", title: "Torrent Power" },
 ];
 
 const CSR = () => {

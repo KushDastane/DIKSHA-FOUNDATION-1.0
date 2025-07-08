@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import "swiper/css";
 import "swiper/css/navigation";
-import FallbackImage from "../components/FallbackImage";
+import SmartLazyImage from "./SmartLazyImage";
 
 const ReusableCarousel = ({ items }) => {
   const swiperRef = useRef(null);
@@ -61,17 +61,16 @@ const ReusableCarousel = ({ items }) => {
         {items.map((item, index) => (
           <SwiperSlide key={index}>
             <div className="rounded-xl overflow-hidden ">
-              <FallbackImage
-                src={item.image}
+              <SmartLazyImage
+                key={item.image}
+                base={item.image}
                 alt={item.title}
                 className="w-full h-48 object-cover"
               />
               <div className="mt-3 px-3 pb-5">
-                <h3 className="font-bold text-lg font-poppins">
-                  {item.title}
-                </h3>
+                <h3 className="font-bold text-lg font-poppins">{item.title}</h3>
                 <div className={`${item.descriptionStyle}`}>
-                    {item.description}
+                  {item.description}
                 </div>
               </div>
             </div>

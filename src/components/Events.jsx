@@ -4,49 +4,49 @@ import { Calendar } from "lucide-react";
 
 const EventData = [
   {
-    image: "/events/yoga.png",
+    image: "/events/yoga",
     title: "Yoga & Meditation",
     description: " Relaxing yoga sessions for seniors",
     descriptionStyle: "text-green-700 font-medium",
   },
   {
-    image: "/events/puja.png",
+    image: "/events/puja",
     title: " Spiritual Sessions",
     description: "Kathavachan, satsang, bhajans",
     descriptionStyle: "text-green-700 font-medium",
   },
   {
-    image: "/events/orchestra.jpg",
+    image: "/events/orchestra",
     title: "90s Live singing / Karaoke",
     description: "Generation friendly songs",
     descriptionStyle: "text-green-700 font-medium",
   },
   {
-    image: "/events/board.png",
+    image: "/events/board",
     title: "Board / Card Games",
     description: "Residents play indoors games",
     descriptionStyle: "text-green-700 font-medium",
   },
   {
-    image: "/events/bday.png",
+    image: "/events/bday",
     title: "Birthday Celebrations",
     description: "Blends the lovely elderly into happiness of others",
     descriptionStyle: "text-green-700 font-medium",
   },
   {
-    image: "/events/art.png",
+    image: "/events/art",
     title: "Arts & Creativity",
     description: "Brings out the child within the elders!",
     descriptionStyle: "text-green-700 font-medium",
   },
   {
-    image: "/events/camp.png",
+    image: "/events/camp",
     title: "Regular Health Camps",
     description: "Ensures time to time health tracking of each individual",
     descriptionStyle: "text-green-700 font-medium",
   },
   {
-    image: "/events/diwali.jpg",
+    image: "/events/diwali",
     title: "Festivals Celebration",
     description: "Every festival is celebrated",
     descriptionStyle: "text-green-700 font-medium",

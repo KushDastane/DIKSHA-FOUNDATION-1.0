@@ -2,11 +2,11 @@ import React from "react";
 import TieupsCarousel from "./TieupsCarousel";
 
 const csrData = [
-  { image: "/hospitals/jupiter2.webp", title: "Jupiter" },
-  { image: "/hospitals/bethany.png", title: "Bethany" },
-  { image: "/hospitals/vedant.png", title: "Vedant" },
-  { image: "/hospitals/hiranandani.png", title: "Hiranandani" },
-  { image: "/hospitals/ambulance.jpg", title: "24x7" },
+  { image: "/hospitals/jupiter2", title: "Jupiter Hospital" },
+  { image: "/hospitals/bethany", title: "Bethany Hospital" },
+  { image: "/hospitals/vedant", title: "Vedant Hospital" },
+  { image: "/hospitals/hiranandani", title: "Hiranandani Hospital" },
+  { image: "/hospitals/ambulance", title: "24x7 Ambulance" },
 ];
 
 const Hospitals = () => {

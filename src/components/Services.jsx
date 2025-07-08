@@ -57,7 +57,7 @@ const Services = () => {
     {
       icon: "Activity",
       title: "Stroke & Neurological Care",
-      description: ["Assistance with speech, movement, and", "healing."],
+      description: ["Assistance with speech, movement,", " and healing."],
       titleStyle:
         "font-poppins text-2xl font-semibold leading-relaxed tracking-wide",
       descriptionStyle: "text-green-700 font-medium",
@@ -98,8 +98,8 @@ const Services = () => {
       title: "Community Engagement",
       description: [
         " Celebrations, music, yoga, and spiritual",
-        "sessions that bring joy and connection to",
-        "daily life.",
+        "sessions that bring joy and connection",
+        "to daily life.",
       ],
       titleStyle:
         "font-poppins text-2xl font-semibold leading-relaxed tracking-wide",
@@ -125,7 +125,7 @@ const Services = () => {
               return (
                 <div
                   key={index}
-                  className="bg-[#f8f7f73c] hover:bg-[#E4FFCE] rounded-xl px-5 py-10"
+                  className="bg-[#f8f7f73c] lg:hover:bg-[#E4FFCE] rounded-xl px-5 py-10"
                 >
                   <div className="flex flex-col gap-2 min-h-[180px]">
                     <IconComponent className=" text-gray-500 mb-2" />

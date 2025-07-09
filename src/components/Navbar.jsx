@@ -80,11 +80,14 @@ const Navbar = () => {
         className="flex items-center space-x-2"
         to="/"
       >
-        <SmartLazyImage
-          base="/branding/logo"
+        <img
+          src="/branding/logo.webp"
           alt="VV Caring Center Logo"
+          width={40}
+          height={40}
+          className="w-10 h-10 rounded-full"
           loading="eager"
-          className="w-10 h-10 rounded-full opacity-100 transition-none"
+          fetchpriority="high"
         />
 
         <h1 className="font-poppins text-[clamp(1rem,2vw,1.5rem)] font-bold text-gray-800">

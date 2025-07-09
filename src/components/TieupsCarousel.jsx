@@ -1,10 +1,12 @@
+// src/components/TieupsCarousel.jsx
+
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import SmartLazyImage from "./SmartLazyImage";
 
-const Carousel = ({
+const TieupsCarousel = ({
   items,
   autoplay = false,
   slidesPerView = 3,
@@ -23,12 +25,16 @@ const Carousel = ({
       {items.map((item, index) => (
         <SwiperSlide key={index} className="!flex justify-center">
           <div className="flex flex-col items-center text-center text-gray-800">
-            <SmartLazyImage 
-              base={item.image}
+            <img
+              src={`${item.image}.webp`}
               alt={item.title}
-              className="w-36 h-36 object-contain rounded-full mb-4"
+              loading="eager"
+              className="w-28 h-28 object-contain bg-white p-2 rounded-full shadow-none"
             />
-            <p className="text-sm font-semibold font-jakarta text-gray-600">{item.title}</p>
+
+            <p className="text-sm font-semibold font-jakarta text-gray-600">
+              {item.title}
+            </p>
           </div>
         </SwiperSlide>
       ))}
@@ -36,4 +42,4 @@ const Carousel = ({
   );
 };
 
-export default Carousel;
+export default TieupsCarousel;

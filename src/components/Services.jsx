@@ -118,14 +118,14 @@ const Services = () => {
             </span>
           </h2>
 
-          <div className=" grid sm:grid-cols-2 lg:grid-cols-3 gap-2 items-start cursor-pointer">
+          <div className=" grid sm:grid-cols-2 lg:grid-cols-3 gap-2 items-start cursor-cell">
             {serviceCard.map((service, index) => {
               const IconComponent = iconMap[service.icon];
 
               return (
                 <div
                   key={index}
-                  className="bg-[#f8f7f73c] lg:hover:bg-[#E4FFCE] rounded-xl px-5 py-10"
+                  className=" lg:hover:bg-[#f8f7f73c] rounded-xl px-5 py-10"
                 >
                   <div className="flex flex-col gap-2 min-h-[180px]">
                     <IconComponent className=" text-gray-500 mb-2" />

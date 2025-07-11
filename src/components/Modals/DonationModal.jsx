@@ -42,6 +42,7 @@ const DonationModal = () => {
       name: donorName,
       phone: donorPhone,
       timestamp: Timestamp.now(),
+      status: "pending",
     };
 
     try {

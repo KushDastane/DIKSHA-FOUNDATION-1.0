@@ -64,6 +64,7 @@ const EventModal = ({ onClose }) => {
       date: formData.date?.toISOString().split("T")[0],
       phone: formData.phone,
       timestamp: Timestamp.now(),
+      status: "pending",
     };
 
     await addDoc(collection(db, "eventBookings"), finalData);
@@ -76,6 +77,7 @@ const EventModal = ({ onClose }) => {
       otherOccasion: "",
       date: null,
       phone: "",
+      status: "pending",
     });
 
     onClose();

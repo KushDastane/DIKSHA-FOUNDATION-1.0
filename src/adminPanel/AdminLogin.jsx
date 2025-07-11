@@ -5,7 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Lock } from "lucide-react";
 
-const allowedAdmins = ["kushdastane69211@gmail.com"];
+const allowedAdmins = [
+  "rautyashsubodhuma@gmail.com",
+  "kushdastane69211@gmail.com",
+];
 
 const AdminLogin = () => {
   const navigate = useNavigate();

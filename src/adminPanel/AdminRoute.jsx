@@ -4,7 +4,10 @@ import { Navigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../config/firebase";
 
-const ALLOWED_EMAILS = ["kushdastane69211@gmail.com"]; 
+const ALLOWED_EMAILS = [
+  "rautyashsubodhuma@gmail.com",
+  "kushdastane69211@gmail.com",
+];
 
 const AdminRoute = ({ children }) => {
   const [user, loading] = useAuthState(auth);

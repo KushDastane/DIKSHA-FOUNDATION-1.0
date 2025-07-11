@@ -75,7 +75,7 @@ const Amenities = () => {
 
               return (
                 <div key={index}>
-                  <div className="flex gap-5 border items-center justify-center px-3 rounded-lg cursor-pointer hover:bg-[#f0f0f02d]  min-h-[100px]">
+                  <div className="flex gap-5 border items-center justify-center px-3 rounded-lg cursor-cell  min-h-[100px]">
                     <IconComponent />
                     <div className="font-semibold">{amenity.title}</div>
                   </div>

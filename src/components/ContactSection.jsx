@@ -32,7 +32,7 @@ const ContactSection = () => {
   const branch = branches[selectedBranchIndex];
 
   return (
-    <section className="max-w-7xl mx-auto px-4 py-20">
+    <section className="max-w-7xl mx-auto px-4 py-4">
       {/* Heading */}
       <h2 className="text-4xl md:text-5xl font-poppins font-semibold text-gray-800 mb-8 text-center">
         Get in Touch

@@ -36,7 +36,7 @@ const AdmissionProcess = () => {
         {steps.map((step, index) => (
           <div
             key={index}
-            className="relative bg-white border border-gray-200 rounded-xl p-6 shadow-sm flex flex-col justify-between hover:bg-gray-50"
+            className="relative bg-white border border-gray-200 rounded-xl p-6 shadow-sm flex flex-col justify-between "
           >
             {/* Circle Number */}
             <div className="w-10 h-10 rounded-full bg-gray-800 text-white flex items-center justify-center font-bold text-lg mb-4">

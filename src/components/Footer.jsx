@@ -1,8 +1,19 @@
 import React from "react";
 import { Facebook, Youtube, Instagram, Phone, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useSiteContent } from "../hooks/useSiteContent";
 
 const Footer = () => {
+  const { contactInfo } = useSiteContent();
+  const phone = contactInfo?.phone;
+  const phone2 =
+    contactInfo?.whatsapp?.replace("https://wa.me/91", "+91-") || "+91-9029006592";
+  const email = contactInfo?.email;
+  const facebook = contactInfo?.facebook;
+  const instagram = contactInfo?.instagram;
+  const youtube = contactInfo?.youtube;
+
+
   return (
     <footer className="bg-[#618A70] text-white px-4 py-8 mt-5">
       {/* Top Row */}
@@ -10,32 +21,31 @@ const Footer = () => {
         {/* Contact Info */}
         <div className="flex flex-col space-y-2 items-center sm:items-start text-sm">
           <Link
-            to="tel:9029006592"
+            to={`tel:${phone}`}
             className="flex gap-2 text-gray-300 hover:text-white"
           >
-            <Phone size={16} className="mt-0.5" />
-            +91 90290 06592
+            <Phone size={16} className="mt-0.5" />{phone}
           </Link>
           <Link
-            to="tel:9930531795"
+            to={`tel:${phone2}`}
             className="flex gap-2 text-gray-300 hover:text-white"
           >
             <Phone size={16} className="mt-0.5" />
-            +91 99305 31795
+            {phone2}
           </Link>
           <a
-            href="mailto:dikshafoundation77@gmail.com"
+            href={`mailto:${email}`}
             className="flex gap-2 text-gray-300 hover:text-white"
           >
             <Mail size={16} className="mt-0.5" />
-            dikshafoundation77@gmail.com
+            {email}
           </a>
         </div>
 
         {/* Social Icons */}
         <div className="flex justify-center gap-6">
           <a
-            href="https://www.facebook.com/share/1C61SU9SNM/"
+            href={`${facebook}`}
             target="_blank"
             rel="noreferrer"
             className="text-gray-300 hover:text-white"
@@ -43,7 +53,7 @@ const Footer = () => {
             <Facebook size={22} />
           </a>
           <a
-            href="https://www.youtube.com/@vvcaring"
+            href={`${youtube}`}
             target="_blank"
             rel="noreferrer"
             className="text-gray-300 hover:text-white"
@@ -51,7 +61,7 @@ const Footer = () => {
             <Youtube size={22} />
           </a>
           <a
-            href="https://www.instagram.com/v.v._caring_centre"
+            href={`${instagram}`}
             target="_blank"
             rel="noreferrer"
             className="text-gray-300 hover:text-white"

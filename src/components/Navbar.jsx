@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { scroller } from "react-scroll";
-import SmartLazyImage from "./SmartLazyImage";
+import { useSiteContent } from "../hooks/useSiteContent";
 
 const navLinks = [
   { name: "Home", href: "#hero" },
@@ -18,6 +18,21 @@ const Navbar = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const [displayNumber, setDisplayNumber] = useState("9029006592");
+  const [dialNumber, setDialNumber] = useState("919029006592");
+  const { contactInfo, loading } = useSiteContent();
+
+  useEffect(() => {
+    if (!loading && contactInfo?.whatsapp) {
+      const full = contactInfo.whatsapp.replace(/\D/g, ""); // 919029006592
+      const display =
+        full.startsWith("91") && full.length === 12
+          ? full.slice(2) // ✅ Just 9029006592
+          : full;
+      setDisplayNumber(display); // for showing
+      setDialNumber(full); // for tel: (no need to add +91 again!)
+    }
+  }, [loading, contactInfo]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -111,11 +126,11 @@ const Navbar = () => {
       </ul>
 
       {/* Call Button (Desktop) */}
-      <a href="tel:9029006592" className="hidden md:flex">
+      <a href={`tel:${dialNumber}`} className="hidden md:flex">
         <div className="font-poppins bg-amber-400 text-black px-4 py-2 rounded-full flex items-center space-x-2 hover:scale-105 transition duration-300">
           <Phone className="w-5 h-5 fill-black stroke-black" strokeWidth={1} />
           <span className="hidden lg:inline text-[clamp(0.9rem,1.8vw,1.2rem)] font-semibold">
-            9029006592
+            {displayNumber}
           </span>
         </div>
       </a>
@@ -147,10 +162,10 @@ const Navbar = () => {
             {name}
           </a>
         ))}
-        <a href="tel:9029006592" onClick={() => setIsOpen(false)}>
+        <a href={`tel:${dialNumber}`} onClick={() => setIsOpen(false)}>
           <div className="bg-amber-400 text-black px-4 py-2 rounded-full flex items-center justify-center space-x-2 hover:scale-105 transition duration-300">
             <Phone size={18} />
-            <span className="font-poppins font-semibold">9029006592</span>
+            <span className="font-poppins font-semibold">{displayNumber}</span>
           </div>
         </a>
       </div>

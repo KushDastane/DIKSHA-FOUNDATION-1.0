@@ -23,8 +23,7 @@ const SmartLazyImage = ({
     "";
 
   const [loaded, setLoaded] = useState(false);
-  console.log("📷 finalSrc:", finalSrc);
-  console.log("🔍 placeholder found?", placeholder !== "");
+
   return (
     <div
       className={`relative overflow-hidden ${className}`}

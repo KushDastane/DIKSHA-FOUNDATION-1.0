@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   HandHeart,
   IndianRupee,
@@ -9,46 +9,58 @@ import {
 } from "lucide-react";
 import Select from "react-select";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-// Sample utility data
-const utilities = [
-  { id: 1, item: "Adult Diapers (M size)", quantityNeeded: "20 packs" },
-  { id: 2, item: "Toiletries Kit", quantityNeeded: "50 units" },
-  { id: 3, item: "Paracetamol Tablets", quantityNeeded: "3 strips" },
-  { id: 4, item: "Bedsheets", quantityNeeded: "15 pieces" },
-];
+import { db } from "../../config/firebase";
+import { collection, addDoc, getDocs, Timestamp } from "firebase/firestore";
 
 const DonationModal = () => {
   const [donationType, setDonationType] = useState("");
+  const [utilities, setUtilities] = useState([]);
   const [selectedUtility, setSelectedUtility] = useState(null);
   const [donationQuantity, setDonationQuantity] = useState("");
   const [donorName, setDonorName] = useState("");
   const [donorPhone, setDonorPhone] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // Fetch utilities from Firestore
+  useEffect(() => {
+    const fetchUtilities = async () => {
+      try {
+        const snapshot = await getDocs(collection(db, "utilityItems"));
+        const utilityList = snapshot.docs.map((doc) => doc.data());
+        setUtilities(utilityList);
+      } catch (err) {
+        console.error("Error fetching utilities:", err);
+      }
+    };
+    fetchUtilities();
+  }, []);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const donationDetails = {
       item: selectedUtility?.value || "",
       quantity: donationQuantity,
       name: donorName,
       phone: donorPhone,
+      timestamp: Timestamp.now(),
     };
 
-    console.log("Submitted Donation:", donationDetails);
-    toast.success("Thank you for your donation! We'll contact you soon.", {});
-
-    setSelectedUtility(null);
-    setDonationQuantity("");
-    setDonorName("");
-    setDonorPhone("");
-    setDonationType("");
+    try {
+      await addDoc(collection(db, "donationSubmissions"), donationDetails);
+      toast.success("Thank you for your donation! We'll contact you soon.");
+      setSelectedUtility(null);
+      setDonationQuantity("");
+      setDonorName("");
+      setDonorPhone("");
+      setDonationType("");
+    } catch (err) {
+      toast.error("Error submitting donation. Try again.");
+      console.error(err);
+    }
   };
 
   const utilityOptions = utilities.map((u) => ({
     value: u.item,
-    label: `${u.item} (Needed: ${u.quantityNeeded})`,
+    label: `${u.item} (${u.quantityNeeded})`,
   }));
 
   return (
@@ -82,7 +94,6 @@ const DonationModal = () => {
               borderRadius: "0.375rem",
               fontSize: "0.875rem",
               minHeight: "42px",
-
               boxShadow: "none",
               "&:hover": { borderColor: "#d1d5db" },
             }),
@@ -100,9 +111,7 @@ const DonationModal = () => {
               page.
             </p>
             <button
-              onClick={
-                () => window.open("/donation", "_blank") //insert payment gateway link
-              }
+              onClick={() => window.open("/donation", "_blank")}
               className="mt-1 bg-green-600 hover:bg-green-700 text-white text-sm font-medium px-5 py-2 rounded-md"
             >
               Donate via Razorpay

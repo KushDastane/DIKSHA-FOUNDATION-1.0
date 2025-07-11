@@ -1,31 +1,38 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { ArrowDown } from "lucide-react";
-
-const steps = [
-  {
-    number: "1",
-    title: "Contact Us",
-    desc: "Reach out on 9029006592 / 9930531795 to inquire.",
-  },
-  {
-    number: "2",
-    title: "Visit the Centre",
-    desc: "Come between 8–12 noon or 4–9 pm to explore & experience facilities.",
-  },
-  {
-    number: "3",
-    title: "Care Discussion & Documentation",
-    desc: "Review the elder’s medical history and needs & submit verification id.",
-  },
-  {
-    number: "4",
-    title: "Fees & Onboarding",
-    desc: "Complete the necessary formalities, make payment and begin a smooth, caring transition into our home.",
-  },
-];
+import { useSiteContent } from "../hooks/useSiteContent";
 
 const AdmissionProcess = () => {
+  const { contactInfo } = useSiteContent();
+  const rawPhone = contactInfo?.phone || "9029006592";
+  const displayPhone = rawPhone.replace(/^(\+91-|91)/, "");
+  const rawNum =
+    contactInfo?.whatsapp?.replace("https://wa.me/", "") || "9930531795";
+  const displayNum = rawNum.replace(/^91/, "");
+
+  const steps = [
+    {
+      number: "1",
+      title: "Contact Us",
+      desc: `Reach out on ${displayPhone} / ${displayNum}  to inquire.`,
+    },
+    {
+      number: "2",
+      title: "Visit the Centre",
+      desc: "Come between 8–12 noon or 4–9 pm to explore & experience facilities.",
+    },
+    {
+      number: "3",
+      title: "Care Discussion & Documentation",
+      desc: "Review the elder’s medical history and needs & submit verification id.",
+    },
+    {
+      number: "4",
+      title: "Fees & Onboarding",
+      desc: "Complete the necessary formalities, make payment and begin a smooth, caring transition into our home.",
+    },
+  ];
   return (
     <section className="max-w-7xl mx-auto px-4 py-20">
       <h2 className="text-4xl md:text-5xl font-poppins font-semibold text-gray-800 mb-12">

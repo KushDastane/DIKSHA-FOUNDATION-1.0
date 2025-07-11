@@ -1,35 +1,35 @@
 import React, { useState } from "react";
 import { Phone, Mail, Instagram, MessageSquare, MapPinned } from "lucide-react";
 import { Link } from "react-router-dom";
-
-// Sample branch data
-const branches = [
-  {
-    name: "Upwan Branch",
-    address:
-      "Khandekar Compound Rambaug, Pokharan Rd Number 1, Upvan, Thane, Maharashtra 400606",
-    mapEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3787.0912795138715!2d72.94769831078783!3d19.218379481940765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b987196251c7%3A0xd0b7f120021b70fb!2sOld%20Age%20Home%20(V.%20V.%20CARING%20CENTRE)!5e1!3m2!1sen!2sin!4v1751790917953!5m2!1sen!2sin",
-  },
-  {
-    name: "Location 2 Branch",
-    address: "Address 2",
-    mapEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3787.0912795138715!2d72.94769831078783!3d19.218379481940765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b987196251c7%3A0xd0b7f120021b70fb!2sOld%20Age%20Home%20(V.%20V.%20CARING%20CENTRE)!5e1!3m2!1sen!2sin!4v1751790917953!5m2!1sen!2sin",
-  },
-];
-
-// Common contact details
-const commonContact = {
-  phone: "+91-9930531795",
-  whatsapp: "Click here",
-  email: "dikshafoundation77@gmail.com",
-  instagram: "https://www.instagram.com/v.v._caring_centre",
-};
+import { useSiteContent } from "../hooks/useSiteContent";
 
 const ContactSection = () => {
+  const { branches, contactInfo, loading, error } = useSiteContent();
   const [selectedBranchIndex, setSelectedBranchIndex] = useState(0);
-  const branch = branches[selectedBranchIndex];
+
+  // ✅ Filter out "coming soon" branches
+  const liveBranches = branches?.filter((b) => !b.comingSoon) || [];
+
+  // Debugging logs (optional)
+  console.log("Live branches:", liveBranches);
+  console.log("Contact Info:", contactInfo);
+  console.log("Error:", error);
+
+  if (loading) return <p className="text-center">Loading contact info...</p>;
+  if (error)
+    return (
+      <p className="text-red-500 text-center">Error: {error.toString()}</p>
+    );
+
+  if (liveBranches.length === 0) {
+    return (
+      <p className="text-gray-500 text-center">
+        No active branches available for contact. Please check Firestore.
+      </p>
+    );
+  }
+
+  const branch = liveBranches[selectedBranchIndex] || {};
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-4">
@@ -40,9 +40,9 @@ const ContactSection = () => {
 
       {/* Branch Selector */}
       <div className="flex flex-wrap justify-center gap-3 mb-10">
-        {branches.map((b, idx) => (
+        {liveBranches.map((b, idx) => (
           <button
-            key={idx}
+            key={b.id || idx}
             onClick={() => setSelectedBranchIndex(idx)}
             className={`px-4 py-2 rounded-full text-sm font-medium transition border ${
               selectedBranchIndex === idx
@@ -50,7 +50,7 @@ const ContactSection = () => {
                 : "text-gray-600 border-gray-200 hover:text-green-800 hover:border-green-800"
             }`}
           >
-            {b.name}
+            {b.name || `Branch ${idx + 1}`}
           </button>
         ))}
       </div>
@@ -58,15 +58,16 @@ const ContactSection = () => {
       {/* Grid Layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
         {/* Contact Info Card */}
-        <div className="bg-white rounded-xl  p-6 space-y-4 text-sm sm:text-base">
+        <div className="bg-white rounded-xl p-6 space-y-4 text-sm sm:text-base">
           <div className="flex items-start gap-3">
             <MapPinned className="text-gray-700 mt-1 shrink-0" />
-            {/* SHRINK ZERO IS IMPORTANT */}
             <div>
               <h4 className="font-semibold text-lg text-gray-800 mb-1">
                 Address
               </h4>
-              <p className="text-gray-600 leading-relaxed">{branch.address}</p>
+              <p className="text-gray-600 leading-relaxed">
+                {branch?.address || "No address available"}
+              </p>
             </div>
           </div>
 
@@ -77,12 +78,10 @@ const ContactSection = () => {
                 Phone
               </h4>
               <Link
-                text-green-900
-                hover:underline
-                to="tel:9930531795"
+                to={`tel:${contactInfo?.phone || ""}`}
                 className="text-green-900 hover:underline"
               >
-                {commonContact.phone}
+                {contactInfo?.phone || "N/A"}
               </Link>
             </div>
           </div>
@@ -94,12 +93,12 @@ const ContactSection = () => {
                 WhatsApp
               </h4>
               <a
-                href="https://wa.me/919029006592"
+                href={contactInfo?.whatsapp || "#"}
                 target="_blank"
                 rel="noreferrer"
                 className="text-green-900 hover:underline"
               >
-                {commonContact.whatsapp}
+                Click here
               </a>
             </div>
           </div>
@@ -111,12 +110,12 @@ const ContactSection = () => {
                 Email
               </h4>
               <a
-                href="mailto:dikshafoundation77@gmail.com"
+                href={`mailto:${contactInfo?.email || ""}`}
                 target="_blank"
                 rel="noreferrer"
                 className="text-green-900 hover:underline"
               >
-                {commonContact.email}
+                {contactInfo?.email || "N/A"}
               </a>
             </div>
           </div>
@@ -128,7 +127,7 @@ const ContactSection = () => {
                 Instagram
               </h4>
               <a
-                href={commonContact.instagram}
+                href={contactInfo?.instagram || "#"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-green-900 hover:underline"
@@ -142,13 +141,14 @@ const ContactSection = () => {
         {/* Map Card */}
         <div className="rounded-xl overflow-hidden shadow-md">
           <iframe
-            src={branch.mapEmbedUrl}
+            src={branch?.mapEmbedUrl || ""}
             width="100%"
             height="400"
             className="rounded-xl border-0 w-full"
             allowFullScreen=""
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
+            title="branch-map"
           ></iframe>
         </div>
       </div>

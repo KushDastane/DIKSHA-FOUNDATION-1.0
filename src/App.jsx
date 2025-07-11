@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
 import Donate from "./pages/Donate";
@@ -9,7 +9,10 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ScrollToSection from "./utils/ScrollToSection";
 import ScrollToTop from "./utils/ScrollToTop";
-import AdminPanel from "./adminPanel"; 
+
+import AdminPanel from "./adminPanel";
+import AdminLogin from "./adminPanel/AdminLogin";
+import AdminRoute from "./adminPanel/AdminRoute";
 
 const App = () => {
   return (
@@ -27,7 +30,15 @@ const App = () => {
         </Route>
 
         {/* Admin Panel */}
-        <Route path="/admin/*" element={<AdminPanel />} />
+        <Route path="/admin-login" element={<AdminLogin />} />
+        <Route
+          path="/admin/*"
+          element={
+            <AdminRoute>
+              <AdminPanel />
+            </AdminRoute>
+          }
+        />
       </Routes>
 
       <ToastContainer position="top-right" autoClose={3000} />

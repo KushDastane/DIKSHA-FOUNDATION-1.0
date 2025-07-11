@@ -112,7 +112,9 @@ const DonationModal = () => {
               page.
             </p>
             <button
-              onClick={() => window.open("/donation", "_blank")}
+              onClick={() =>
+                window.open("https://razorpay.me/@dikshafoundation", "_blank")
+              }
               className="mt-1 bg-green-600 hover:bg-green-700 text-white text-sm font-medium px-5 py-2 rounded-md"
             >
               Donate via Razorpay

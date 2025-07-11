@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 import { Lock } from "lucide-react";
 
 const allowedAdmins = [
+  "pranavchavan5766@gmail.com",
+  "pushpakkhade290805@gmail.com",
   "rautyashsubodhuma@gmail.com",
   "kushdastane69211@gmail.com",
 ];

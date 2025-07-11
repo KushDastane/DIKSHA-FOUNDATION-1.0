@@ -5,6 +5,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../config/firebase";
 
 const ALLOWED_EMAILS = [
+  "pranavchavan5766@gmail.com",
+  "pushpakkhade290805@gmail.com",
   "rautyashsubodhuma@gmail.com",
   "kushdastane69211@gmail.com",
 ];
